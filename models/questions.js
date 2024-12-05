@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const QuestionSchema = new Schema({
-    questionTxt: String ,
-    answerTxt:  String ,
+    questionTxt: String,
+    answerTxt: String,
     createdAt: { type: Date, default: Date.now },
     adId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -16,6 +16,9 @@ const QuestionSchema = new Schema({
         ref: "User",
         required: true
     }
-});
+},
+    {
+        collection: "ads"
+    });
 
 module.exports = mongoose.model('Question', QuestionSchema);

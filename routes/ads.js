@@ -4,16 +4,31 @@ var router = express.Router();
 let adsController = require('../controllers/ads');
 let authController = require('../controllers/auth');
 
-/* GET ads listing. */
+/* GET ads listing. */// Just for check
 router.get('/', function(req, res, next) {
-    res.send('Hello , this is from the ads.');
-  });
+    res.send('Hello, this is from the ads.');
+});
 
-router.get('/list', adsController.list);
-router.post('/create', authController.requireSignin, adsController.createAd);
-router.get('/get/:adId', adsController.getAd, adsController.sendById);
-router.put('/edit/:adId', authController.requireSignin, adsController.update);
-router.delete('/delete/:adId', authController.requireSignin, adsController.remove);
+router.get('/list', adsController.adsList);
+
+router.get('/get/:id', adsController.getByID);
+
+router.post('/create',
+  authController.requireSignin, // Ensure the user is signed in
+  adsController.processAdd
+);
+
+router.put('/edit/:id',
+  authController.requireSignin, // Ensure the user is signed in
+  // adsController.hasAuthorization, // Check if the user is authorized
+  adsController.processEdit
+);
+
+router.put('/disable/:id',
+  authController.requireSignin, // Ensure the user is signed in
+  // adsController.hasAuthorization, // Check if the user is authorized
+  adsController.performDisable
+);
+
 
 module.exports = router;
-
