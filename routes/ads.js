@@ -20,13 +20,13 @@ router.post('/create',
 
 router.put('/edit/:id',
   authController.requireSignin, // Ensure the user is signed in
-  // adsController.hasAuthorization, // Check if the user is authorized
+  adsController.hasAuthorization, // Check if the user is authorized
   adsController.processEdit
 );
 
 router.put('/disable/:id',
   authController.requireSignin, // Ensure the user is signed in
-  // adsController.hasAuthorization, // Check if the user is authorized
+  adsController.hasAuthorization, // Check if the user is authorized
   adsController.performDisable
 );
 
