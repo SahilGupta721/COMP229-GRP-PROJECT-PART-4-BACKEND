@@ -14,11 +14,11 @@ const QuestionSchema = new Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true
+        required: false  // optional 
     }
 },
     {
-        collection: "ads"
+        collection: "questions"
     });
 
 module.exports = mongoose.model('Question', QuestionSchema);
